@@ -26,6 +26,7 @@ public class Component {
 			if (supplier.getSupplierID().equals(supplierID)) {
 				return supplier;
 			}
+			System.out.println("HELLO");
 		}
 		return null;
 	}
