@@ -148,12 +148,13 @@ public class UserInterface {
 
 	public void addComponentSupplierRelation() {
 		String componentID = getToken("Enter component ID: ");
-		String supplierID = getToken("Enter supplier ID: ");
 		Component component = company.findComponent(componentID);
 		if (component == null) {
 			System.out.println("Entered component does not exist.");
 			return;
 		}
+
+		String supplierID = getToken("Enter supplier ID: ");
 		Supplier supplier = company.findSupplier(supplierID);
 		if (supplier == null) {
 			System.out.println("Entered supplier does not exist.");
@@ -170,16 +171,16 @@ public class UserInterface {
 
 	public void assignComponents() {
 		String componentID = getToken("Enter component ID: ");
-		int quantity = getNumber("Enter quantity to assign: ");
-
-		while (quantity < 1) {
-			quantity = getNumber("Quantity must be more than 0, enter quantity: ");
-		}
-
 		Component component = company.findComponent(componentID);
 		if (component == null) {
 			System.out.println("Entered component does not exist.");
 			return;
+		}
+
+		int quantity = getNumber("Enter quantity to assign: ");
+
+		while (quantity < 1) {
+			quantity = getNumber("Quantity must be more than 0, enter quantity: ");
 		}
 
 		boolean assigned = company.assignComponent(component, quantity);
@@ -192,23 +193,23 @@ public class UserInterface {
 
 	public void placeOrder() {
 		String componentID = getToken("Enter component ID: ");
-		String supplierID = getToken("Enter supplier ID: ");
-
-		int quantity = getNumber("Enter order quantity: ");
-
-		while (quantity < 1) {
-			quantity = getNumber("Quantity must be more than 0, enter quantity: ");
-		}
-
 		Component component = company.findComponent(componentID);
 		if (component == null) {
 			System.out.println("Entered component does not exist.");
 			return;
 		}
+
+		String supplierID = getToken("Enter supplier ID: ");
 		Supplier supplier = company.findSupplier(supplierID);
 		if (supplier == null) {
 			System.out.println("Entered supplier does not exist.");
 			return;
+		}
+
+		int quantity = getNumber("Enter order quantity: ");
+
+		while (quantity < 1) {
+			quantity = getNumber("Quantity must be more than 0, enter quantity: ");
 		}
 
 		Order order = company.placeOrder(component, supplier, quantity);
