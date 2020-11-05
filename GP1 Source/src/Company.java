@@ -153,8 +153,9 @@ public class Company implements Serializable {
 			return null;
 		}
 		ComponentSupplierRelation relation = order.getRelation();
-		relation.addQuantity(order.getQuantity());
-		relation.getComponent().addToStock(order.getQuantity());
+		int orderQuantity = order.getQuantity();
+		relation.addQuantity(orderQuantity);
+		relation.getComponent().addToStock(orderQuantity);
 		pendingOrders.remove(order);
 		return relation;
 	}
