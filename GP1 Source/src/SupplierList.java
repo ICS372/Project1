@@ -1,11 +1,13 @@
 import java.io.Serializable;
 import java.util.LinkedList;
 
+/**
+ * The collection class for Supplier objects.
+ * 
+ * @author Shuja Uddin
+ *
+ */
 public class SupplierList implements Serializable {
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private LinkedList<Supplier> supplierList = new LinkedList<Supplier>();
 	private static SupplierList suppliers;
@@ -17,6 +19,11 @@ public class SupplierList implements Serializable {
 	private SupplierList() {
 	}
 
+	/**
+	 * Supports the singleton pattern
+	 * 
+	 * @return the singleton object
+	 */
 	public static SupplierList instance() {
 		if (suppliers == null) {
 			return (suppliers = new SupplierList());
@@ -25,10 +32,22 @@ public class SupplierList implements Serializable {
 		}
 	}
 
+	/**
+	 * Inserts a given supplier to the list of suppliers
+	 * 
+	 * @param supplier supplier to be inserted
+	 * @return true, if insertion was successful
+	 */
 	public boolean insert(Supplier supplier) {
 		return supplierList.add(supplier);
 	}
 
+	/**
+	 * Searches the collection for a supplier with the given ID.
+	 * 
+	 * @param supplierID the ID being searched for
+	 * @return a Supplier object with the matching ID, if one is found.
+	 */
 	public Supplier search(String supplierID) {
 		for (Supplier supplier : supplierList) {
 			if (supplier.getId().equals(supplierID)) {
@@ -38,6 +57,9 @@ public class SupplierList implements Serializable {
 		return null;
 	}
 
+	/**
+	 * A string representation of all suppliers
+	 */
 	@Override
 	public String toString() {
 		String output = "";

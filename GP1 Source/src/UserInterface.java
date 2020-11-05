@@ -4,6 +4,12 @@ import java.io.InputStreamReader;
 import java.util.Iterator;
 import java.util.StringTokenizer;
 
+/**
+ * This class implements the user interface for the Company project.
+ * 
+ * @author Shuja Uddin
+ *
+ */
 public class UserInterface {
 	private static UserInterface userInterface;
 	private BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
@@ -24,8 +30,9 @@ public class UserInterface {
 	private static final int HELP = 13;
 
 	/**
-	 * Made private for singleton pattern. Conditionally looks for any saved data.
-	 * Otherwise, it gets a singleton Library object.
+	 * Uses the singleton pattern. Looks for any saved data and retrieves it. If no
+	 * data is found, it gets a singleton Company object that can be used for
+	 * testing.
 	 */
 	private UserInterface() {
 		if (yesOrNo("Look for saved data and  use it?")) {
@@ -93,6 +100,13 @@ public class UserInterface {
 		} while (true);
 	}
 
+	/**
+	 * Queries for a yes or no and returns true for yes and false for no
+	 * 
+	 * @param prompt The string to be prepended to the yes/no prompt
+	 * @return true for yes and false for no
+	 * 
+	 */
 	private boolean yesOrNo(String prompt) {
 		String more = getToken(prompt + " Enter Y/y for yes, anything else for no");
 		if (more.charAt(0) != 'y' && more.charAt(0) != 'Y') {
@@ -120,6 +134,9 @@ public class UserInterface {
 		} while (true);
 	}
 
+	/**
+	 * Method for adding a component. Uses the appropriate Company method.
+	 */
 	public void addComponent() {
 		Component component;
 		do {
@@ -133,6 +150,9 @@ public class UserInterface {
 		} while (yesOrNo("Add more components?"));
 	}
 
+	/**
+	 * Method for adding a supplier. Uses the appropriate Company method.
+	 */
 	public void addSupplier() {
 		Supplier supplier;
 		do {
@@ -146,6 +166,10 @@ public class UserInterface {
 		} while (yesOrNo("Add more suppliers?"));
 	}
 
+	/**
+	 * Method for adding a relationship between a component and a supplier. Uses the
+	 * functionality of appropriate Company methods.
+	 */
 	public void addComponentSupplierRelation() {
 		String componentID = getToken("Enter component ID: ");
 		Component component = company.findComponent(componentID);
@@ -169,6 +193,10 @@ public class UserInterface {
 		System.out.println("Supplier already associated with component.");
 	}
 
+	/**
+	 * Method for assigning a component to production. Uses the functionality of
+	 * appropriate Company methods.
+	 */
 	public void assignComponents() {
 		String componentID = getToken("Enter component ID: ");
 		Component component = company.findComponent(componentID);
@@ -191,6 +219,10 @@ public class UserInterface {
 		System.out.println("Assignment unsuccessful. Assignment quantity exceeds quantity on hand.");
 	}
 
+	/**
+	 * Method for placing an order for a component. Uses the functionality of
+	 * appropriate Company methods.
+	 */
 	public void placeOrder() {
 		String componentID = getToken("Enter component ID: ");
 		Component component = company.findComponent(componentID);
@@ -220,6 +252,9 @@ public class UserInterface {
 		System.out.println("Supplier does not supply this component.");
 	}
 
+	/**
+	 * Method for fulfilling an order. Uses the appropriate Company method.
+	 */
 	public void fulfillOrder() {
 		String orderID = getToken("Enter outstanding order's ID: ");
 		ComponentSupplierRelation relation = company.fulfillOrder(orderID);
@@ -230,6 +265,10 @@ public class UserInterface {
 		System.out.println(relation);
 	}
 
+	/**
+	 * Method for displaying the details of a given component. Uses the appropriate
+	 * Company methods to find the component and its suppliers.
+	 */
 	public void displayComponent() {
 		String componentID = getToken("Enter component ID: ");
 		Component component = company.findComponent(componentID);
@@ -246,6 +285,10 @@ public class UserInterface {
 		}
 	}
 
+	/**
+	 * Method for displaying the details of a given supplier. Uses the appropriate
+	 * Company methods to find the supplier and the components it supplies.
+	 */
 	public void displaySupplier() {
 		String supplierID = getToken("Enter supplier ID: ");
 		Supplier supplier = company.findSupplier(supplierID);
@@ -262,21 +305,32 @@ public class UserInterface {
 		}
 	}
 
+	/**
+	 * Method for displaying all outstanding orders. Uses the appropriate Company
+	 * method to get the list of outstanding orders.
+	 */
 	public void displayPendingOrders() {
 		System.out.println(company.displayPendingOrders());
 	}
 
+	/**
+	 * Method for displaying all components. Uses the appropriate Company method to
+	 * get the list of all components.
+	 */
 	public void displayAllComponents() {
 		System.out.println(company.displayAllComponents());
 	}
 
+	/**
+	 * Method for displaying all suppliers. Uses the appropriate Company method to
+	 * get the list of all suppliers.
+	 */
 	public void displayAllSuppliers() {
 		System.out.println(company.displayAllSuppliers());
 	}
 
 	/**
-	 * Method to be called for retrieving saved data. Uses the appropriate Library
-	 * method for retrieval.
+	 * Calls the appropriate Company method to retrieve a saved Company object.
 	 * 
 	 */
 	private void retrieve() {
@@ -296,8 +350,7 @@ public class UserInterface {
 	}
 
 	/**
-	 * Method to be called for saving the Library object. Uses the appropriate
-	 * Library method for saving.
+	 * Calls the appropriate Company method for saving the Company object.
 	 * 
 	 */
 	private void save() {
@@ -331,8 +384,8 @@ public class UserInterface {
 	}
 
 	/**
-	 * Orchestrates the whole process. Calls the appropriate method for the
-	 * different functionalities.
+	 * Organizes the whole process. Calls the appropriate method for the different
+	 * functionalities.
 	 * 
 	 */
 	public void process() {

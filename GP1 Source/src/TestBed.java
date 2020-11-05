@@ -1,5 +1,12 @@
 import java.util.Random;
 
+/**
+ * This class generates randomized data and uses it to test the system
+ * functionality via asserts.
+ * 
+ * @author Shuja Uddin
+ *
+ */
 public class TestBed {
 	private Company company;
 
@@ -7,13 +14,16 @@ public class TestBed {
 	 * Stores the Company object and invokes test method to test program
 	 * functionality.
 	 * 
-	 * @param library the Library object
+	 * @param company the Company object
 	 */
 	public TestBed(Company company) {
 		this.company = company;
 		test();
 	}
 
+	/**
+	 * Tests various functionalities by calling on appropriate test methods.
+	 */
 	public void test() {
 		Component[] components = testAddComponent();
 		Supplier[] suppliers = testAddSupplier();
@@ -25,6 +35,12 @@ public class TestBed {
 		testAssignComponent(components);
 	}
 
+	/**
+	 * Tests component creation.
+	 * 
+	 * @return an array of all Components added, to be used to test other
+	 *         functionalities
+	 */
 	public Component[] testAddComponent() {
 		String[] componentNames = generateNames(40);
 		Component[] components = new Component[40];
@@ -35,6 +51,12 @@ public class TestBed {
 		return components;
 	}
 
+	/**
+	 * Test supplier creation.
+	 * 
+	 * @return an array of all Suppliers added, to be used to test other
+	 *         functionalities
+	 */
 	public Supplier[] testAddSupplier() {
 		String[] supplierNames = generateNames(10);
 		Supplier[] suppliers = new Supplier[10];
@@ -45,18 +67,35 @@ public class TestBed {
 		return suppliers;
 	}
 
+	/**
+	 * Tests if the added components can be found
+	 * 
+	 * @param components an array of the components that have been added
+	 */
 	public void testFindComponent(Component[] components) {
 		for (Component component : components) {
 			assert component.equals(company.findComponent(component.getId()));
 		}
 	}
 
+	/**
+	 * Tests if the added suppliers can be found
+	 * 
+	 * @param suppliers an array of the suppliers that have been added
+	 */
 	public void testFindSupplier(Supplier[] suppliers) {
 		for (Supplier supplier : suppliers) {
 			assert supplier.equals(company.findSupplier(supplier.getId()));
 		}
 	}
 
+	/**
+	 * Tests the creation of component-supplier relationships by pairing every given
+	 * component with every given supplier
+	 * 
+	 * @param components an array of components
+	 * @param suppliers  an array of suppliers
+	 */
 	public void testComponentSupplierRelations(Component[] components, Supplier[] suppliers) {
 		for (Component component : components) {
 			for (Supplier supplier : suppliers) {
@@ -66,6 +105,15 @@ public class TestBed {
 		}
 	}
 
+	/**
+	 * Tests order placement by placing an order for every given component with
+	 * every given supplier
+	 * 
+	 * @param components
+	 * @param suppliers
+	 * @return an array of the orders placed, to be used for testing other
+	 *         functionalities
+	 */
 	public Order[] testPlaceOrder(Component[] components, Supplier[] suppliers) {
 		Order[] orders = new Order[400];
 		int ordersIndex = 0;
@@ -80,6 +128,12 @@ public class TestBed {
 		return orders;
 	}
 
+	/**
+	 * Tests order fulfillment by checking that every given order returns an
+	 * appropriate response.
+	 * 
+	 * @param orders an array of outstanding orders
+	 */
 	public void testFulfillOrder(Order[] orders) {
 		for (Order order : orders) {
 			ComponentSupplierRelation relation = company.fulfillOrder(order.getId());
@@ -87,6 +141,11 @@ public class TestBed {
 		}
 	}
 
+	/**
+	 * Tests assignment of components to production for every given component
+	 * 
+	 * @param components an array of components
+	 */
 	public void testAssignComponent(Component[] components) {
 		for (Component component : components) {
 			company.assignComponent(component, 50);
@@ -94,6 +153,12 @@ public class TestBed {
 		}
 	}
 
+	/**
+	 * Used to generate randomized names for components and suppliers
+	 * 
+	 * @param numberOfNames
+	 * @return an array of randomized names
+	 */
 	public String[] generateNames(int numberOfNames) {
 		String lowerCaseLetters = "abcdefghijklmnopqrstuvwxyz";
 		String upperCaseLetters = lowerCaseLetters.toUpperCase();
