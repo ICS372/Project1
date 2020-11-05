@@ -338,9 +338,9 @@ public class UserInterface {
 			if (company == null) {
 				company = Company.retrieve();
 				if (company != null) {
-					System.out.println(" The library has been successfully retrieved from the file LibraryData \n");
+					System.out.println("The company has been successfully retrieved from the file CompanyData.\n");
 				} else {
-					System.out.println("File doesnt exist; creating new library");
+					System.out.println("File doesn't exist; creating new company.");
 					company = Company.instance();
 				}
 			}
@@ -355,9 +355,9 @@ public class UserInterface {
 	 */
 	private void save() {
 		if (Company.save()) {
-			System.out.println(" The library has been successfully saved in the file LibraryData \n");
+			System.out.println("The company has been successfully saved in the file CompanyData.\n");
 		} else {
-			System.out.println(" There has been an error in saving \n");
+			System.out.println("File could not be saved due to an unknown error.\n");
 		}
 	}
 
