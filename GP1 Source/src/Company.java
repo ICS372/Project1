@@ -184,7 +184,7 @@ public class Company implements Serializable {
 	 * 
 	 * @return a PendingOrders object
 	 */
-	public PendingOrders displayPendingOrders() {
+	public PendingOrders getPendingOrders() {
 		return pendingOrders;
 	}
 
@@ -193,7 +193,7 @@ public class Company implements Serializable {
 	 * 
 	 * @return a ComponentList object
 	 */
-	public ComponentList displayAllComponents() {
+	public ComponentList getAllComponents() {
 		return components;
 	}
 
@@ -202,7 +202,7 @@ public class Company implements Serializable {
 	 * 
 	 * @return a SupplierList object
 	 */
-	public SupplierList displayAllSuppliers() {
+	public SupplierList getAllSuppliers() {
 		return suppliers;
 	}
 

@@ -310,7 +310,7 @@ public class UserInterface {
 	 * method to get the list of outstanding orders.
 	 */
 	public void displayPendingOrders() {
-		System.out.println(company.displayPendingOrders());
+		System.out.println(company.getPendingOrders());
 	}
 
 	/**
@@ -318,7 +318,7 @@ public class UserInterface {
 	 * get the list of all components.
 	 */
 	public void displayAllComponents() {
-		System.out.println(company.displayAllComponents());
+		System.out.println(company.getAllComponents());
 	}
 
 	/**
@@ -326,7 +326,7 @@ public class UserInterface {
 	 * get the list of all suppliers.
 	 */
 	public void displayAllSuppliers() {
-		System.out.println(company.displayAllSuppliers());
+		System.out.println(company.getAllSuppliers());
 	}
 
 	/**
