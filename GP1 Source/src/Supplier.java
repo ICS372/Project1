@@ -6,6 +6,7 @@ import java.util.Iterator;
  * This class represents a single supplier.
  * 
  * @author Shuja Uddin
+ * @version 6 November 2020
  *
  */
 public class Supplier implements Serializable {
@@ -18,7 +19,8 @@ public class Supplier implements Serializable {
 	/**
 	 * Represents a single Supplier
 	 * 
-	 * @param name name of the supplier
+	 * @param name
+	 *            name of the supplier
 	 */
 	public Supplier(String name) {
 		this.name = name;
@@ -44,8 +46,8 @@ public class Supplier implements Serializable {
 	}
 
 	/**
-	 * Returns a set of relationships representing the components supplied by this
-	 * supplier.
+	 * Returns a set of relationships representing the components supplied by
+	 * this supplier.
 	 * 
 	 * @return a set of ComponentSupplierRelation objects
 	 */
@@ -56,7 +58,8 @@ public class Supplier implements Serializable {
 	/**
 	 * Adds a relationship between the supplier and a component.
 	 * 
-	 * @param relation the relation to be added
+	 * @param relation
+	 *            the relation to be added
 	 * @return true, iff the relation was added
 	 */
 	public boolean addComponentRelation(ComponentSupplierRelation relation) {
@@ -66,15 +69,15 @@ public class Supplier implements Serializable {
 	/**
 	 * Returns an iterator over all the component relations of this supplier
 	 * 
-	 * @return an Iterator of all ComponentSupplierRelation objects related to this
-	 *         supplier
+	 * @return an Iterator of all ComponentSupplierRelation objects related to
+	 *         this supplier
 	 */
 	public Iterator<ComponentSupplierRelation> getAllComponents() {
 		return componentRelations.iterator();
 	}
 
 	/**
-	 * A string representation of the supplier
+	 * Returns a string representation of the supplier.
 	 */
 	@Override
 	public String toString() {

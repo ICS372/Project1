@@ -6,6 +6,7 @@ import java.util.Objects;
  * supplier
  * 
  * @author Shuja Uddin
+ * @version 6 November 2020
  *
  */
 public class ComponentSupplierRelation implements Serializable {
@@ -14,16 +15,19 @@ public class ComponentSupplierRelation implements Serializable {
 	private Supplier supplier;
 
 	/**
-	 * Represents the total quantity of this component this supplier has supplied to
-	 * date
+	 * Represents the total quantity of this component this supplier has
+	 * supplied to date.
 	 */
 	private int quantitySuppliedToDate;
 
 	/**
-	 * The component and supplier in the relation are stored.
+	 * Generates a constructor for {@code ComponentSupplierRelation}. In it, a
+	 * {@code Component} and {@code Supplier} are stored.
 	 * 
-	 * @param component the component being supplied
-	 * @param supplier  the supplier supplying the component
+	 * @param component
+	 *            the {@code Component} being supplied by the {@code supplier}.
+	 * @param supplier
+	 *            the {@code Supplier} supplying the {@code component}.
 	 */
 	public ComponentSupplierRelation(Component component, Supplier supplier) {
 		this.component = component;
@@ -31,36 +35,40 @@ public class ComponentSupplierRelation implements Serializable {
 	}
 
 	/**
-	 * Returns the total quantity supplied by the supplier so far
+	 * Returns the total quantity supplied by the {@code supplier} so far
 	 * 
-	 * @return
+	 * @return {@code quantitySuppliedToDate}.
 	 */
 	public int getQuantitySuppliedToDate() {
 		return quantitySuppliedToDate;
 	}
 
 	/**
-	 * Adds to the quantity supplied by the supplier so far
+	 * Adds a given quantity to the {@code quantitySuppliedToDate}, the quantity
+	 * supplied by the supplier so far.
 	 * 
-	 * @param quantity the quantity to be added
+	 * @param quantity
+	 *            the quantity to be added.
 	 */
 	public void addQuantity(int quantity) {
 		this.quantitySuppliedToDate += quantity;
 	}
 
 	/**
-	 * Returns the supplier in this relation
+	 * Returns the {@code Supplier} that is supplying the {@code Component} in
+	 * the relation.
 	 * 
-	 * @return the Supplier object
+	 * @return {@code supplier}.
 	 */
 	public Supplier getSupplier() {
 		return supplier;
 	}
 
 	/**
-	 * Returns the component in this relation
+	 * Returns the {@code Component} that is being supplied by the
+	 * {@code Supplier} in the relation.
 	 * 
-	 * @return the Component object
+	 * @return {@code component}.
 	 */
 	public Component getComponent() {
 		return component;
@@ -69,8 +77,10 @@ public class ComponentSupplierRelation implements Serializable {
 	/**
 	 * Checks whether a relation is equal to the one supplied.
 	 * 
-	 * @param object the relation that will be compared
-	 * @return true, iff they have the same component and supplier.
+	 * @param object
+	 *            the relation that will be compared.
+	 * @return {@literal}, if they have the same component and supplier.
+	 *         Otherwise, {@literal false}.
 	 */
 	@Override
 	public boolean equals(Object object) {
@@ -86,12 +96,13 @@ public class ComponentSupplierRelation implements Serializable {
 
 		ComponentSupplierRelation relation = (ComponentSupplierRelation) object;
 
-		return (this.component.equals(relation.component)) && (this.supplier.equals(relation.supplier));
+		return (this.component.equals(relation.component))
+				&& (this.supplier.equals(relation.supplier));
 	}
 
 	/**
-	 * Generates a hash code for the relation based on the hash of the component and
-	 * supplier
+	 * Generates a hash code for the relation based on the hash of the
+	 * {@code component}. and {@code supplier}.
 	 */
 	@Override
 	public int hashCode() {
@@ -99,12 +110,13 @@ public class ComponentSupplierRelation implements Serializable {
 	}
 
 	/**
-	 * A string representation of the relation
+	 * Returns a string representation of the relation.
 	 */
 	@Override
 	public String toString() {
-		return "Component: " + component.getName() + "\nSupplier: " + supplier.getName()
-				+ "\nTotal quantity received from " + supplier.getName() + ": " + quantitySuppliedToDate;
+		return "Component: " + component.getName() + "\nSupplier: "
+				+ supplier.getName() + "\nTotal quantity received from "
+				+ supplier.getName() + ": " + quantitySuppliedToDate;
 	}
 
 }

@@ -5,6 +5,7 @@ import java.util.LinkedList;
  * The collection class for Component objects
  * 
  * @author Shuja Uddin
+ * @version 6 November 2020
  *
  */
 public class ComponentList implements Serializable {
@@ -12,7 +13,7 @@ public class ComponentList implements Serializable {
 	private LinkedList<Component> componentList = new LinkedList<Component>();
 	private static ComponentList components;
 
-	/*
+	/**
 	 * Private constructor for singleton pattern
 	 * 
 	 */
@@ -35,8 +36,10 @@ public class ComponentList implements Serializable {
 	/**
 	 * Inserts a given component to the list of components
 	 * 
-	 * @param component component to be inserted
-	 * @return true, if insertion was successful
+	 * @param component
+	 *            component to be inserted
+	 * @return {@literal}, if insertion was successful. Otherwise,
+	 *         {@literal false}.
 	 */
 	public boolean insert(Component component) {
 		return componentList.add(component);
@@ -45,8 +48,10 @@ public class ComponentList implements Serializable {
 	/**
 	 * Searches the collection for a component with the given ID.
 	 * 
-	 * @param componentID the ID being searched for
-	 * @return a Component object with the matching ID, if one is found.
+	 * @param componentID
+	 *            the ID being searched for
+	 * @return a {@code Component} object with the matching ID, if one is found.
+	 *         Otherwise, {@literal null}.
 	 */
 	public Component search(String componentID) {
 		for (Component component : componentList) {
@@ -58,13 +63,15 @@ public class ComponentList implements Serializable {
 	}
 
 	/**
-	 * A string representation of all components
+	 * A {@code String} representation of all {@code Component} objects in
+	 * {@code ComponentList}.
 	 */
 	@Override
 	public String toString() {
 		String output = "";
 		for (Component component : componentList) {
-			output += "Component name: " + component.getName() + " | Component ID: " + component.getId()
+			output += "Component name: " + component.getName()
+					+ " | Component ID: " + component.getId()
 					+ " | Quantity on hand: " + component.getStock() + "\n";
 		}
 		return output;

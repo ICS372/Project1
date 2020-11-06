@@ -12,26 +12,98 @@ import java.util.StringTokenizer;
  */
 public class UserInterface {
 	private static UserInterface userInterface;
-	private BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+	private BufferedReader input = new BufferedReader(
+			new InputStreamReader(System.in));
 	private static Company company;
+
+	/**
+	 * Constant value by which the user should enter into the terminal if he/she
+	 * is finished accessing the {@code company}.
+	 */
 	private static final int EXIT = 0;
+
+	/**
+	 * Constant value by which the user should enter into the terminal if he/she
+	 * would like to add a {@code Component}.
+	 */
 	private static final int ADD_COMPONENT = 1;
+
+	/**
+	 * Constant value by which the user should enter into the terminal if he/she
+	 * would like to add a {@code Supplier}.
+	 */
 	private static final int ADD_SUPPLIER = 2;
+
+	/**
+	 * Constant value by which the user should enter into the terminal if he/she
+	 * would like to add a {@code ComponentSupplierRelation}.
+	 */
 	private static final int ADD_COMPONENT_SUPPLIER = 3;
+
+	/**
+	 * Constant value by which the user should enter into the terminal if he/she
+	 * would like to assign a quantity to a particular {@code Component}.
+	 */
 	private static final int ASSIGN_COMPONENTS = 4;
+
+	/**
+	 * Constant value by which the user should enter into the terminal if he/she
+	 * would like to place an {@code Order}.
+	 */
 	private static final int PLACE_ORDER = 5;
+
+	/**
+	 * Constant value by which the user should enter into the terminal if he/she
+	 * would like to fulfill an outstanding {@code Order}.
+	 */
 	private static final int FULFILL_ORDER = 6;
+
+	/**
+	 * Constant value by which the user should enter into the terminal if he/she
+	 * would like to display the information of a particular {@code Component}.
+	 */
 	private static final int DISPLAY_COMPONENT = 7;
+
+	/**
+	 * Constant value by which the user should enter into the terminal if he/she
+	 * would like to display the information of a particular {@code Supplier}.
+	 */
 	private static final int DISPLAY_SUPPLIER = 8;
+
+	/**
+	 * Constant value by which the user should enter into the terminal if he/she
+	 * would like to display the list of {@code Order}s that are currently
+	 * outstanding (i.e.) {@code PendingOrders}.
+	 */
 	private static final int DISPLAY_PENDING_ORDERS = 9;
+
+	/**
+	 * Constant value by which the user should enter into the terminal if he/she
+	 * would like to display the list of all {@code Component}s in the system.
+	 */
 	private static final int DISPLAY_ALL_COMPONENTS = 10;
+
+	/**
+	 * Constant value by which the user should enter into the terminal if he/she
+	 * would like to display the list of all {@code Supplier}s in the system.
+	 */
 	private static final int DISPLAY_ALL_SUPPLIERS = 11;
+
+	/**
+	 * Constant value by which the user should enter into the terminal if he/she
+	 * would like to save all of the changes made into the system.
+	 */
 	private static final int SAVE = 12;
+
+	/**
+	 * Constant value by which the user should enter into the terminal if he/she
+	 * needs help in navigating the system.
+	 */
 	private static final int HELP = 13;
 
 	/**
-	 * Uses the singleton pattern. Looks for any saved data and retrieves it. If no
-	 * data is found, it gets a singleton Company object that can be used for
+	 * Uses the singleton pattern. Looks for any saved data and retrieves it. If
+	 * no data is found, it gets a singleton Company object that can be used for
 	 * testing.
 	 */
 	private UserInterface() {
@@ -39,7 +111,8 @@ public class UserInterface {
 			retrieve();
 		} else {
 			company = Company.instance();
-			if (yesOrNo("Do you want to generate a test bed and invoke the functionality using asserts?")) {
+			if (yesOrNo(
+					"Do you want to generate a test bed and invoke the functionality using asserts?")) {
 				new TestBed(company);
 			}
 		}
@@ -47,13 +120,15 @@ public class UserInterface {
 	}
 
 	/**
-	 * Supports the singleton pattern
+	 * Supports the singleton pattern. Retrieves an instance a singleton object
+	 * for {@code userInterface}. If {@code userInterface} is null, a new
+	 * {@code userInterface} will be instantiated.
 	 * 
-	 * @return the singleton object
+	 * @return {@code userInterface} the singleton object.
 	 */
 	public static UserInterface instance() {
 		if (userInterface == null) {
-			return userInterface = new UserInterface();
+			return (userInterface = new UserInterface());
 		} else {
 			return userInterface;
 		}
@@ -62,7 +137,8 @@ public class UserInterface {
 	/**
 	 * Gets a token after prompting
 	 * 
-	 * @param prompt - whatever the user wants as prompt
+	 * @param prompt
+	 *            - whatever the user wants as prompt
 	 * @return - the token from the keyboard
 	 * 
 	 */
@@ -84,7 +160,8 @@ public class UserInterface {
 	/**
 	 * Converts the string to a number
 	 * 
-	 * @param prompt the string for prompting
+	 * @param prompt
+	 *            the string for prompting
 	 * @return the integer corresponding to the string
 	 * 
 	 */
@@ -103,12 +180,14 @@ public class UserInterface {
 	/**
 	 * Queries for a yes or no and returns true for yes and false for no
 	 * 
-	 * @param prompt The string to be prepended to the yes/no prompt
+	 * @param prompt
+	 *            The string to be prepended to the yes/no prompt
 	 * @return true for yes and false for no
 	 * 
 	 */
 	private boolean yesOrNo(String prompt) {
-		String more = getToken(prompt + " Enter Y/y for yes, anything else for no");
+		String more = getToken(
+				prompt + " Enter Y/y for yes, anything else for no");
 		if (more.charAt(0) != 'y' && more.charAt(0) != 'Y') {
 			return false;
 		}
@@ -145,7 +224,8 @@ public class UserInterface {
 			if (component != null) {
 				System.out.println(component);
 			} else {
-				System.out.println("Component " + name + " could not be added.");
+				System.out
+						.println("Component " + name + " could not be added.");
 			}
 		} while (yesOrNo("Add more components?"));
 	}
@@ -167,8 +247,8 @@ public class UserInterface {
 	}
 
 	/**
-	 * Method for adding a relationship between a component and a supplier. Uses the
-	 * functionality of appropriate Company methods.
+	 * Method for adding a relationship between a component and a supplier. Uses
+	 * the functionality of appropriate Company methods.
 	 */
 	public void addComponentSupplierRelation() {
 		String componentID = getToken("Enter component ID: ");
@@ -185,9 +265,11 @@ public class UserInterface {
 			return;
 		}
 
-		boolean relationCreated = company.addComponentSupplierRelation(component, supplier);
+		boolean relationCreated = company
+				.addComponentSupplierRelation(component, supplier);
 		if (relationCreated) {
-			System.out.println("Component-Supplier Relationship has been successfully created.");
+			System.out.println(
+					"Component-Supplier Relationship has been successfully created.");
 			return;
 		}
 		System.out.println("Supplier already associated with component.");
@@ -208,15 +290,18 @@ public class UserInterface {
 		int quantity = getNumber("Enter quantity to assign: ");
 
 		while (quantity < 1) {
-			quantity = getNumber("Quantity must be more than 0, enter quantity: ");
+			quantity = getNumber(
+					"Quantity must be more than 0, enter quantity: ");
 		}
 
 		boolean assigned = company.assignComponent(component, quantity);
 		if (assigned) {
-			System.out.println("Assignment successful. Updated quantity:\n" + component);
+			System.out.println(
+					"Assignment successful. Updated quantity:\n" + component);
 			return;
 		}
-		System.out.println("Assignment unsuccessful. Assignment quantity exceeds quantity on hand.");
+		System.out.println(
+				"Assignment unsuccessful. Assignment quantity exceeds quantity on hand.");
 	}
 
 	/**
@@ -241,7 +326,8 @@ public class UserInterface {
 		int quantity = getNumber("Enter order quantity: ");
 
 		while (quantity < 1) {
-			quantity = getNumber("Quantity must be more than 0, enter quantity: ");
+			quantity = getNumber(
+					"Quantity must be more than 0, enter quantity: ");
 		}
 
 		Order order = company.placeOrder(component, supplier, quantity);
@@ -266,8 +352,8 @@ public class UserInterface {
 	}
 
 	/**
-	 * Method for displaying the details of a given component. Uses the appropriate
-	 * Company methods to find the component and its suppliers.
+	 * Method for displaying the details of a given component. Uses the
+	 * appropriate Company methods to find the component and its suppliers.
 	 */
 	public void displayComponent() {
 		String componentID = getToken("Enter component ID: ");
@@ -278,7 +364,8 @@ public class UserInterface {
 		}
 
 		System.out.println(component + "\nSuppliers:");
-		Iterator<ComponentSupplierRelation> componentSuppliers = company.getComponentSuppliers(component);
+		Iterator<ComponentSupplierRelation> componentSuppliers = company
+				.getComponentSuppliers(component);
 		while (componentSuppliers.hasNext()) {
 			Supplier supplier = componentSuppliers.next().getSupplier();
 			System.out.println(supplier.getName() + ", " + supplier.getId());
@@ -286,8 +373,9 @@ public class UserInterface {
 	}
 
 	/**
-	 * Method for displaying the details of a given supplier. Uses the appropriate
-	 * Company methods to find the supplier and the components it supplies.
+	 * Method for displaying the details of a given supplier. Uses the
+	 * appropriate Company methods to find the supplier and the components it
+	 * supplies.
 	 */
 	public void displaySupplier() {
 		String supplierID = getToken("Enter supplier ID: ");
@@ -298,7 +386,8 @@ public class UserInterface {
 		}
 
 		System.out.println(supplier + "\nComponents supplied:");
-		Iterator<ComponentSupplierRelation> suppliedComponents = company.getSuppliedComponents(supplier);
+		Iterator<ComponentSupplierRelation> suppliedComponents = company
+				.getSuppliedComponents(supplier);
 		while (suppliedComponents.hasNext()) {
 			Component component = suppliedComponents.next().getComponent();
 			System.out.println(component.getName() + ", " + component.getId());
@@ -306,24 +395,24 @@ public class UserInterface {
 	}
 
 	/**
-	 * Method for displaying all outstanding orders. Uses the appropriate Company
-	 * method to get the list of outstanding orders.
+	 * Method for displaying all outstanding orders. Uses the appropriate
+	 * Company method to get the list of outstanding orders.
 	 */
 	public void displayPendingOrders() {
 		System.out.println(company.getPendingOrders());
 	}
 
 	/**
-	 * Method for displaying all components. Uses the appropriate Company method to
-	 * get the list of all components.
+	 * Method for displaying all components. Uses the appropriate Company method
+	 * to get the list of all components.
 	 */
 	public void displayAllComponents() {
 		System.out.println(company.getAllComponents());
 	}
 
 	/**
-	 * Method for displaying all suppliers. Uses the appropriate Company method to
-	 * get the list of all suppliers.
+	 * Method for displaying all suppliers. Uses the appropriate Company method
+	 * to get the list of all suppliers.
 	 */
 	public void displayAllSuppliers() {
 		System.out.println(company.getAllSuppliers());
@@ -338,9 +427,11 @@ public class UserInterface {
 			if (company == null) {
 				company = Company.retrieve();
 				if (company != null) {
-					System.out.println("The company has been successfully retrieved from the file CompanyData.\n");
+					System.out.println(
+							"The company has been successfully retrieved from the file CompanyData.\n");
 				} else {
-					System.out.println("File doesn't exist; creating new company.");
+					System.out.println(
+							"File doesn't exist; creating new company.");
 					company = Company.instance();
 				}
 			}
@@ -355,9 +446,11 @@ public class UserInterface {
 	 */
 	private void save() {
 		if (Company.save()) {
-			System.out.println("The company has been successfully saved in the file CompanyData.\n");
+			System.out.println(
+					"The company has been successfully saved in the file CompanyData.\n");
 		} else {
-			System.out.println("File could not be saved due to an unknown error.\n");
+			System.out.println(
+					"File could not be saved due to an unknown error.\n");
 		}
 	}
 
@@ -366,26 +459,35 @@ public class UserInterface {
 	 * 
 	 */
 	public void help() {
-		System.out.println("Enter a number between 0 and 13 as explained below:");
+		System.out
+				.println("Enter a number between 0 and 13 as explained below:");
 		System.out.println(EXIT + " to exit");
 		System.out.println(ADD_COMPONENT + " to add a component.");
 		System.out.println(ADD_SUPPLIER + " to add a supplier.");
-		System.out.println(ADD_COMPONENT_SUPPLIER + " to add a supplier to a component.");
-		System.out.println(ASSIGN_COMPONENTS + " to assign a quantity of components to production.");
+		System.out.println(
+				ADD_COMPONENT_SUPPLIER + " to add a supplier to a component.");
+		System.out.println(ASSIGN_COMPONENTS
+				+ " to assign a quantity of components to production.");
 		System.out.println(PLACE_ORDER + " to order components.");
-		System.out.println(FULFILL_ORDER + " to mark outstanding orders as fulfilled.");
-		System.out.println(DISPLAY_COMPONENT + " to display a component's details.");
-		System.out.println(DISPLAY_SUPPLIER + " to display a supplier's details.");
-		System.out.println(DISPLAY_PENDING_ORDERS + " to display all outstanding orders.");
-		System.out.println(DISPLAY_ALL_COMPONENTS + " to display all components.");
-		System.out.println(DISPLAY_ALL_SUPPLIERS + " to display all suppliers.");
+		System.out.println(
+				FULFILL_ORDER + " to mark outstanding orders as fulfilled.");
+		System.out.println(
+				DISPLAY_COMPONENT + " to display a component's details.");
+		System.out.println(
+				DISPLAY_SUPPLIER + " to display a supplier's details.");
+		System.out.println(
+				DISPLAY_PENDING_ORDERS + " to display all outstanding orders.");
+		System.out.println(
+				DISPLAY_ALL_COMPONENTS + " to display all components.");
+		System.out
+				.println(DISPLAY_ALL_SUPPLIERS + " to display all suppliers.");
 		System.out.println(SAVE + " to  save data");
 		System.out.println(HELP + " for help");
 	}
 
 	/**
-	 * Organizes the whole process. Calls the appropriate method for the different
-	 * functionalities.
+	 * Organizes the whole process. Calls the appropriate method for the
+	 * different functionalities.
 	 * 
 	 */
 	public void process() {
@@ -393,45 +495,45 @@ public class UserInterface {
 		help();
 		while ((command = getCommand()) != EXIT) {
 			switch (command) {
-			case ADD_COMPONENT:
-				addComponent();
-				break;
-			case ADD_SUPPLIER:
-				addSupplier();
-				break;
-			case ADD_COMPONENT_SUPPLIER:
-				addComponentSupplierRelation();
-				break;
-			case ASSIGN_COMPONENTS:
-				assignComponents();
-				break;
-			case PLACE_ORDER:
-				placeOrder();
-				break;
-			case FULFILL_ORDER:
-				fulfillOrder();
-				break;
-			case DISPLAY_COMPONENT:
-				displayComponent();
-				break;
-			case DISPLAY_SUPPLIER:
-				displaySupplier();
-				break;
-			case DISPLAY_PENDING_ORDERS:
-				displayPendingOrders();
-				break;
-			case DISPLAY_ALL_COMPONENTS:
-				displayAllComponents();
-				break;
-			case DISPLAY_ALL_SUPPLIERS:
-				displayAllSuppliers();
-				break;
-			case SAVE:
-				save();
-				break;
-			case HELP:
-				help();
-				break;
+				case ADD_COMPONENT :
+					addComponent();
+					break;
+				case ADD_SUPPLIER :
+					addSupplier();
+					break;
+				case ADD_COMPONENT_SUPPLIER :
+					addComponentSupplierRelation();
+					break;
+				case ASSIGN_COMPONENTS :
+					assignComponents();
+					break;
+				case PLACE_ORDER :
+					placeOrder();
+					break;
+				case FULFILL_ORDER :
+					fulfillOrder();
+					break;
+				case DISPLAY_COMPONENT :
+					displayComponent();
+					break;
+				case DISPLAY_SUPPLIER :
+					displaySupplier();
+					break;
+				case DISPLAY_PENDING_ORDERS :
+					displayPendingOrders();
+					break;
+				case DISPLAY_ALL_COMPONENTS :
+					displayAllComponents();
+					break;
+				case DISPLAY_ALL_SUPPLIERS :
+					displayAllSuppliers();
+					break;
+				case SAVE :
+					save();
+					break;
+				case HELP :
+					help();
+					break;
 			}
 		}
 	}
@@ -439,7 +541,8 @@ public class UserInterface {
 	/**
 	 * The method to start the application. Simply calls process().
 	 * 
-	 * @param args not used
+	 * @param args
+	 *            not used
 	 */
 	public static void main(String[] args) {
 		UserInterface.instance().process();

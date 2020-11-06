@@ -8,9 +8,10 @@ import java.util.Iterator;
 
 /**
  * This class acts as a facade for the entire system and facilitates the
- * interactions between the user interface and other parts of the system
+ * interactions between the user interface and other parts of the system.
  * 
  * @author Shuja Uddin
+ * @version 6 November 2020
  *
  */
 public class Company implements Serializable {
@@ -21,8 +22,8 @@ public class Company implements Serializable {
 	private static Company company;
 
 	/**
-	 * Uses singleton pattern; creates collection objects for components, suppliers
-	 * and orders
+	 * Uses singleton pattern; creates collection objects for components,
+	 * suppliers and orders
 	 */
 	private Company() {
 		components = ComponentList.instance();
@@ -47,7 +48,8 @@ public class Company implements Serializable {
 	/**
 	 * Adds a new component to the component collection
 	 * 
-	 * @param name component name
+	 * @param name
+	 *            component name
 	 * @return the Component object created
 	 */
 	public Component addComponent(String name) {
@@ -61,7 +63,8 @@ public class Company implements Serializable {
 	/**
 	 * Adds a new supplier to the supplier collection
 	 * 
-	 * @param name supplier name
+	 * @param name
+	 *            supplier name
 	 * @return the Supplier object created
 	 */
 	public Supplier addSupplier(String name) {
@@ -75,7 +78,8 @@ public class Company implements Serializable {
 	/**
 	 * Searches for a given component
 	 * 
-	 * @param componentID identifier of the component
+	 * @param componentID
+	 *            identifier of the component
 	 * @return the Component object, if found
 	 */
 	public Component findComponent(String componentID) {
@@ -85,7 +89,8 @@ public class Company implements Serializable {
 	/**
 	 * Searches for a given supplier
 	 * 
-	 * @param supplierID identifier of the supplier
+	 * @param supplierID
+	 *            identifier of the supplier
 	 * @return the Supplier object, if found
 	 */
 	public Supplier findSupplier(String supplierID) {
@@ -96,24 +101,31 @@ public class Company implements Serializable {
 	 * Adds a relationship between a component and supplier, indicating that the
 	 * supplier provides the component
 	 * 
-	 * @param component the Component being supplied
-	 * @param supplier  the Supplier of the component
+	 * @param component
+	 *            the Component being supplied
+	 * @param supplier
+	 *            the Supplier of the component
 	 * @return
 	 */
-	public boolean addComponentSupplierRelation(Component component, Supplier supplier) {
-		ComponentSupplierRelation relation = new ComponentSupplierRelation(component, supplier);
-		if (component.addSupplierRelation(relation) && supplier.addComponentRelation(relation)) {
+	public boolean addComponentSupplierRelation(Component component,
+			Supplier supplier) {
+		ComponentSupplierRelation relation = new ComponentSupplierRelation(
+				component, supplier);
+		if (component.addSupplierRelation(relation)
+				&& supplier.addComponentRelation(relation)) {
 			return true;
 		}
 		return false;
 	}
 
 	/**
-	 * Adjusts the in-stock quantity of the given component after a given quantity
-	 * has been assigned for production
+	 * Adjusts the in-stock quantity of the given component after a given
+	 * quantity has been assigned for production
 	 * 
-	 * @param component the Component object being assigned
-	 * @param quantity  the quantity assigned
+	 * @param component
+	 *            the Component object being assigned
+	 * @param quantity
+	 *            the quantity assigned
 	 * @return true iff there is enough stock for the assignment
 	 */
 	public boolean assignComponent(Component component, int quantity) {
@@ -121,15 +133,19 @@ public class Company implements Serializable {
 	}
 
 	/**
-	 * Places an order for a given component, with the given supplier, for a given
-	 * quantity
+	 * Places an order for a given component, with the given supplier, for a
+	 * given quantity
 	 * 
-	 * @param component the Component object being ordered
-	 * @param supplier  the Supplier who will be supplying the component
-	 * @param quantity  the quantity ordered
+	 * @param component
+	 *            the Component object being ordered
+	 * @param supplier
+	 *            the Supplier who will be supplying the component
+	 * @param quantity
+	 *            the quantity ordered
 	 * @return an Order object, if placing the order was successful
 	 */
-	public Order placeOrder(Component component, Supplier supplier, int quantity) {
+	public Order placeOrder(Component component, Supplier supplier,
+			int quantity) {
 		ComponentSupplierRelation relation = component.getSupplier(supplier);
 		if (relation == null) {
 			return null;
@@ -141,10 +157,11 @@ public class Company implements Serializable {
 	}
 
 	/**
-	 * Fulfills a given order, updating the stock of the component and the quantity
-	 * provided by the supplier so far
+	 * Fulfills a given order, updating the stock of the component and the
+	 * quantity provided by the supplier so far
 	 * 
-	 * @param orderID identifier of the Order object
+	 * @param orderID
+	 *            identifier of the Order object
 	 * @return a ComponentSupplierRelation object if the order was found
 	 */
 	public ComponentSupplierRelation fulfillOrder(String orderID) {
@@ -163,20 +180,24 @@ public class Company implements Serializable {
 	/**
 	 * Returns all the supplier relations of a given component
 	 * 
-	 * @param component the Component object
+	 * @param component
+	 *            the Component object
 	 * @return an Iterator of all supplier relations of the component
 	 */
-	public Iterator<ComponentSupplierRelation> getComponentSuppliers(Component component) {
+	public Iterator<ComponentSupplierRelation> getComponentSuppliers(
+			Component component) {
 		return component.getAllSuppliers();
 	}
 
 	/**
 	 * Returns all component relations of a given supplier
 	 * 
-	 * @param supplier the Supplier object
+	 * @param supplier
+	 *            the Supplier object
 	 * @return an Iterator of all component relations of the supplier
 	 */
-	public Iterator<ComponentSupplierRelation> getSuppliedComponents(Supplier supplier) {
+	public Iterator<ComponentSupplierRelation> getSuppliedComponents(
+			Supplier supplier) {
 		return supplier.getAllComponents();
 	}
 
@@ -199,18 +220,19 @@ public class Company implements Serializable {
 	}
 
 	/**
-	 * Returns the list of all suppliers
+	 * Returns the list of all {@code Supplier}s from the {@code SupplierList},
+	 * {@code suppliers}.
 	 * 
-	 * @return a SupplierList object
+	 * @return {@code suppliers}
 	 */
 	public SupplierList getAllSuppliers() {
 		return suppliers;
 	}
 
 	/**
-	 * Retrieves a de-serialized version of the company from disk
+	 * Retrieves a de-serialized version of the company from disk.
 	 * 
-	 * @return a Company object
+	 * @return a {@code Company} object.
 	 */
 	public static Company retrieve() {
 		try {
@@ -229,9 +251,11 @@ public class Company implements Serializable {
 	}
 
 	/**
-	 * Used to serialize the Company
+	 * Used to serialize the {@code Company}. Saves all information related to
+	 * {@code Company}.
 	 * 
-	 * @return true iff the data could be saved
+	 * @return {@literal true} if the data could be saved. Otherwise,
+	 *         {@literal false}.
 	 */
 	public static boolean save() {
 		try {
@@ -239,6 +263,7 @@ public class Company implements Serializable {
 			ObjectOutputStream output = new ObjectOutputStream(file);
 			output.writeObject(company);
 			output.writeObject(IdGenerator.instance());
+			file.flush();
 			file.close();
 			return true;
 		} catch (IOException ioe) {

@@ -2,9 +2,14 @@ import java.io.Serializable;
 import java.util.LinkedList;
 
 /**
- * The collection class for outstanding orders.
+ * The collection class for outstanding orders. An outstanding order is an
+ * {@code Order} that has not been fulfilled. If an order is fulfilled, then it
+ * is removed the {@code PendingOrders} list. See
+ * {@link Company#fulfillOrder(String)} and {@link PendingOrders#remove(Order)}
+ * for more information.
  * 
  * @author Shuja Uddin
+ * @version 6 November 2020
  *
  */
 public class PendingOrders implements Serializable {
@@ -35,8 +40,10 @@ public class PendingOrders implements Serializable {
 	/**
 	 * Inserts a given order to the list of orders
 	 * 
-	 * @param order order to be inserted
-	 * @return true, if insertion was successful
+	 * @param order
+	 *            order to be inserted
+	 * @return {@literal true}, if insertion was successful. Otherwise,
+	 *         {@literal false}.
 	 */
 	public boolean insert(Order order) {
 		return pendingOrderList.add(order);
@@ -45,7 +52,8 @@ public class PendingOrders implements Serializable {
 	/**
 	 * Removes a given order from the list of orders
 	 * 
-	 * @param order order to be removed
+	 * @param order
+	 *            order to be removed
 	 * @return true, if the collection contained the given order
 	 */
 	public boolean remove(Order order) {
@@ -55,8 +63,10 @@ public class PendingOrders implements Serializable {
 	/**
 	 * Searches the collection for an order with the given ID.
 	 * 
-	 * @param orderID the ID being searched for
-	 * @return an Order object with the matching ID, if one is found.
+	 * @param orderID
+	 *            the ID being searched for
+	 * @return an {@code Order} object whose {@code id} matches with
+	 *         {@code orderID}, if one is found. Otherwise, {@literal null}.
 	 */
 	public Order search(String orderID) {
 		for (Order order : pendingOrderList) {
@@ -68,16 +78,17 @@ public class PendingOrders implements Serializable {
 	}
 
 	/**
-	 * A string representation of all outstanding orders
+	 * Returns a string representation of all outstanding orders.
 	 */
 	@Override
 	public String toString() {
 		String output = "Outstanding orders: \n";
 		for (Order order : pendingOrderList) {
 			ComponentSupplierRelation relation = order.getRelation();
-			output += "Order number: " + order.getId() + " | Component: " + relation.getComponent().getName()
-					+ " | Supplier: " + relation.getSupplier().getName() + " | Quantity ordered: " + order.getQuantity()
-					+ "\n";
+			output += "Order number: " + order.getId() + " | Component: "
+					+ relation.getComponent().getName() + " | Supplier: "
+					+ relation.getSupplier().getName() + " | Quantity ordered: "
+					+ order.getQuantity() + "\n";
 		}
 		return output;
 	}

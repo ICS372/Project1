@@ -3,9 +3,11 @@ import java.io.ObjectInputStream;
 import java.io.Serializable;
 
 /**
- * This class generates unique IDs for components, suppliers and orders.
+ * This class generates unique IDs for {@code Component}s, {@code Supplier}s and
+ * {@code Order}s.
  * 
  * @author Shuja Uddin
+ * @version 6 November 2020
  *
  */
 public class IdGenerator implements Serializable {
@@ -15,7 +17,7 @@ public class IdGenerator implements Serializable {
 	private int orderIdCounter;
 	private static IdGenerator idGenerator;
 
-	/*
+	/**
 	 * Private constructor for singleton pattern
 	 * 
 	 */
@@ -39,27 +41,33 @@ public class IdGenerator implements Serializable {
 	}
 
 	/**
-	 * Returns a component ID
+	 * Generates an identification number for a {@code Component}. Increments
+	 * the {@code componentIdCounter} by {@literal 1}, to ensure that each
+	 * component ID is unique. That new value is finally returned.
 	 * 
-	 * @return ID for the component
+	 * @return {@code componentIdCounter} as the ID for the {@code Component}.
 	 */
 	public int getComponentId() {
 		return componentIdCounter++;
 	}
 
 	/**
-	 * Returns a supplier ID
+	 * Generate an identification number for a {@code Supplier}. Increments the
+	 * {@code suppliertIdCounter} by {@literal 1}, to ensure that each supplier
+	 * ID is unique. That new value is finally returned.
 	 * 
-	 * @return ID for the supplier
+	 * @return {@code supplierIdCounter} as the ID for the {@code Supplier}.
 	 */
 	public int getSupplierId() {
 		return supplierIdCounter++;
 	}
 
 	/**
-	 * Returns an order ID
+	 * Generate an identification number for a {@code Order}. Increments the
+	 * {@code orderIdCounter} by {@literal 1}, to ensure that each order ID is
+	 * unique. That new value is finally returned.
 	 * 
-	 * @return ID for the order
+	 * @return {@code orderIdCounter} as the ID for the {@code Order}.
 	 */
 	public int getOrderId() {
 		return orderIdCounter++;
@@ -68,7 +76,8 @@ public class IdGenerator implements Serializable {
 	/**
 	 * Retrieves the IdGenerator object
 	 * 
-	 * @param input an ObjectInputStream object for de-serialization
+	 * @param input
+	 *            an ObjectInputStream object for de-serialization
 	 */
 	public static void retrieve(ObjectInputStream input) {
 		try {

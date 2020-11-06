@@ -6,10 +6,17 @@ import java.util.Iterator;
  * This class represents a single component.
  * 
  * @author Shuja Uddin
+ * @version 6 November 2020
  *
  */
 public class Component implements Serializable {
 	private static final long serialVersionUID = 1L;
+
+	/**
+	 * Constant {@code String} value that is placed in the beginning of every
+	 * {@code id} to indicate that this {@code String} represents a
+	 * {@code Component}.
+	 */
 	private static final String COMPONENT_MARKER = "C";
 	private String name;
 	private String id;
@@ -17,9 +24,10 @@ public class Component implements Serializable {
 	private HashSet<ComponentSupplierRelation> supplierRelations = new HashSet<ComponentSupplierRelation>();
 
 	/**
-	 * Represents a single component
+	 * Represents a single {@code Component}.
 	 * 
-	 * @param name name of the component
+	 * @param name
+	 *            the name of the {@code Component}.
 	 */
 	public Component(String name) {
 		this.name = name;
@@ -27,27 +35,27 @@ public class Component implements Serializable {
 	}
 
 	/**
-	 * Returns the name of the component
+	 * Returns the name of the {@code Component}.
 	 * 
-	 * @return name of the component
+	 * @return {@code name}.
 	 */
 	public String getName() {
 		return name;
 	}
 
 	/**
-	 * Returns the id of the component
+	 * Returns the identification of the {@code Component}.
 	 * 
-	 * @return id of the component
+	 * @return {@code id}.
 	 */
 	public String getId() {
 		return id;
 	}
 
 	/**
-	 * Returns the current stock quantity of the component
+	 * Returns the current stock quantity of the {@code Component}.
 	 * 
-	 * @return stock
+	 * @return {@code stock}.
 	 */
 	public int getStock() {
 		return stock;
@@ -56,17 +64,18 @@ public class Component implements Serializable {
 	/**
 	 * Adds the given quantity to the component stock
 	 * 
-	 * @param quantity quantity to be added
+	 * @param quantity
+	 *            the quantity to be added.
 	 */
 	public void addToStock(int quantity) {
 		this.stock += quantity;
 	}
 
 	/**
-	 * Returns a set of relationships representing the suppliers that supply this
-	 * component.
+	 * Returns a set of relationships representing the suppliers that supply
+	 * this component.
 	 * 
-	 * @return a set of ComponentSupplierRelation objects
+	 * @return a set of {@code ComponentSupplierRelation} objects
 	 */
 	public HashSet<ComponentSupplierRelation> getSupplierRelations() {
 		return this.supplierRelations;
@@ -75,7 +84,8 @@ public class Component implements Serializable {
 	/**
 	 * Adds a relationship between the component and a supplier
 	 * 
-	 * @param relation the relation to be added
+	 * @param relation
+	 *            the relation to be added
 	 * @return true, iff the relation was added
 	 */
 	public boolean addSupplierRelation(ComponentSupplierRelation relation) {
@@ -83,10 +93,12 @@ public class Component implements Serializable {
 	}
 
 	/**
-	 * Removes the given quantity from stock
+	 * Removes the given quantity from {@code stock}.
 	 * 
-	 * @param quantity quantity to be removed
-	 * @return true, if there is enough stock
+	 * @param quantity
+	 *            quantity to be removed
+	 * @return {@literal true}, if there is enough {@code stock}. Otherwise,
+	 *         {@literal false}.
 	 */
 	public boolean assign(int quantity) {
 		if (stock >= quantity) {
@@ -97,12 +109,13 @@ public class Component implements Serializable {
 	}
 
 	/**
-	 * Finds and returns the relation between this component and the given supplier,
-	 * if one exists.
+	 * Finds and returns the relation between this component and the given
+	 * supplier, if one exists.
 	 * 
-	 * @param supplier the supplier whose relation is being searched for
-	 * @return a ComponentSupplierRelation object of this component and the given
-	 *         supplier
+	 * @param supplier
+	 *            the supplier whose relation is being searched for
+	 * @return a ComponentSupplierRelation object of this component and the
+	 *         given supplier
 	 */
 	public ComponentSupplierRelation getSupplier(Supplier supplier) {
 		for (ComponentSupplierRelation relation : supplierRelations) {
@@ -116,18 +129,19 @@ public class Component implements Serializable {
 	/**
 	 * Returns an iterator over all the supplier relations of this component
 	 * 
-	 * @return an Iterator of all ComponentSupplierRelation objects related to this
-	 *         component
+	 * @return an Iterator of all ComponentSupplierRelation objects related to
+	 *         this component
 	 */
 	public Iterator<ComponentSupplierRelation> getAllSuppliers() {
 		return supplierRelations.iterator();
 	}
 
 	/**
-	 * Returns a string representation of the component
+	 * Returns a {@code String} representation of the {@code Component}.
 	 */
 	@Override
 	public String toString() {
-		return "Component name: " + name + "\nComponent ID: " + id + "\nQuantity on hand: " + stock;
+		return "Component name: " + name + "\nComponent ID: " + id
+				+ "\nQuantity on hand: " + stock;
 	}
 }

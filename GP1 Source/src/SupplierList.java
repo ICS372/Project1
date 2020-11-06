@@ -5,6 +5,7 @@ import java.util.LinkedList;
  * The collection class for Supplier objects.
  * 
  * @author Shuja Uddin
+ * @version 6 November 2020
  *
  */
 public class SupplierList implements Serializable {
@@ -35,7 +36,8 @@ public class SupplierList implements Serializable {
 	/**
 	 * Inserts a given supplier to the list of suppliers
 	 * 
-	 * @param supplier supplier to be inserted
+	 * @param supplier
+	 *            supplier to be inserted
 	 * @return true, if insertion was successful
 	 */
 	public boolean insert(Supplier supplier) {
@@ -45,7 +47,8 @@ public class SupplierList implements Serializable {
 	/**
 	 * Searches the collection for a supplier with the given ID.
 	 * 
-	 * @param supplierID the ID being searched for
+	 * @param supplierID
+	 *            the ID being searched for
 	 * @return a Supplier object with the matching ID, if one is found.
 	 */
 	public Supplier search(String supplierID) {
@@ -58,13 +61,14 @@ public class SupplierList implements Serializable {
 	}
 
 	/**
-	 * A string representation of all suppliers
+	 * A string representation of all suppliers.
 	 */
 	@Override
 	public String toString() {
 		String output = "";
 		for (Supplier supplier : supplierList) {
-			output += "Supplier name: " + supplier.getName() + " | Supplier ID: " + supplier.getId() + "\n";
+			output += "Supplier name: " + supplier.getName()
+					+ " | Supplier ID: " + supplier.getId() + "\n";
 		}
 		return output;
 	}
