@@ -4,7 +4,7 @@ import java.util.Random;
  * This class generates randomized data and uses it to test the system
  * functionality via asserts.
  * 
- * @author Shuja Uddin
+ * @author Shuja Uddin and Adnan Wazwaz
  * @version 6 November 2020
  *
  */
