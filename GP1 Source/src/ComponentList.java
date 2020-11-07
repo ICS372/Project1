@@ -70,9 +70,7 @@ public class ComponentList implements Serializable {
 	public String toString() {
 		String output = "";
 		for (Component component : componentList) {
-			output += "Component name: " + component.getName()
-					+ " | Component ID: " + component.getId()
-					+ " | Quantity on hand: " + component.getStock() + "\n";
+			output += (component.toString() + "\n");
 		}
 		return output;
 	}

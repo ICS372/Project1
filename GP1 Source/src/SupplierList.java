@@ -67,8 +67,7 @@ public class SupplierList implements Serializable {
 	public String toString() {
 		String output = "";
 		for (Supplier supplier : supplierList) {
-			output += "Supplier name: " + supplier.getName()
-					+ " | Supplier ID: " + supplier.getId() + "\n";
+			output += (supplier.toString() + "\n");
 		}
 		return output;
 	}

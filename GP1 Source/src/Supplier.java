@@ -81,6 +81,15 @@ public class Supplier implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "Supplier name: " + name + "\nSupplier ID: " + id;
+		// return "Supplier name: " + name + " | Supplier ID: " + id;
+		String output = "Supplier name: " + name + " | Supplier ID: " + id
+				+ "\nComponents supplied:\n";
+		Iterator<ComponentSupplierRelation> suppliedComponents = getAllComponents();
+		while (suppliedComponents.hasNext()) {
+			Component component = suppliedComponents.next().getComponent();
+			output += (component.getName() + ", " + component.getId() + "\n");
+		}
+		output += "\n";
+		return output;
 	}
 }

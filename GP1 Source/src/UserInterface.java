@@ -1,7 +1,6 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Iterator;
 import java.util.StringTokenizer;
 
 /**
@@ -182,7 +181,7 @@ public class UserInterface {
 	 * 
 	 * @param prompt
 	 *            The string to be prepended to the yes/no prompt
-	 * @return true for yes and false for no
+	 * @return {@literal true} if the user enters
 	 * 
 	 */
 	private boolean yesOrNo(String prompt) {
@@ -362,14 +361,15 @@ public class UserInterface {
 			System.out.println("Entered component does not exist.");
 			return;
 		}
-
-		System.out.println(component + "\nSuppliers:");
-		Iterator<ComponentSupplierRelation> componentSuppliers = company
-				.getComponentSuppliers(component);
-		while (componentSuppliers.hasNext()) {
-			Supplier supplier = componentSuppliers.next().getSupplier();
-			System.out.println(supplier.getName() + ", " + supplier.getId());
-		}
+		System.out.println(component);
+		/*
+		 * System.out.println(component + "\nSuppliers:");
+		 * Iterator<ComponentSupplierRelation> componentSuppliers = company
+		 * .getComponentSuppliers(component); while
+		 * (componentSuppliers.hasNext()) { Supplier supplier =
+		 * componentSuppliers.next().getSupplier();
+		 * System.out.println(supplier.getName() + ", " + supplier.getId()); }
+		 */
 	}
 
 	/**
@@ -384,14 +384,15 @@ public class UserInterface {
 			System.out.println("Entered supplier does not exist.");
 			return;
 		}
-
-		System.out.println(supplier + "\nComponents supplied:");
-		Iterator<ComponentSupplierRelation> suppliedComponents = company
-				.getSuppliedComponents(supplier);
-		while (suppliedComponents.hasNext()) {
-			Component component = suppliedComponents.next().getComponent();
-			System.out.println(component.getName() + ", " + component.getId());
-		}
+		System.out.println(supplier);
+		/*
+		 * System.out.println(supplier + "\nComponents supplied:");
+		 * Iterator<ComponentSupplierRelation> suppliedComponents = company
+		 * .getSuppliedComponents(supplier); while
+		 * (suppliedComponents.hasNext()) { Component component =
+		 * suppliedComponents.next().getComponent();
+		 * System.out.println(component.getName() + ", " + component.getId()); }
+		 */
 	}
 
 	/**

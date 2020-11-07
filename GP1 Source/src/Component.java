@@ -82,11 +82,12 @@ public class Component implements Serializable {
 	}
 
 	/**
-	 * Adds a relationship between the component and a supplier
+	 * Adds a relationship between the component and a supplier.
 	 * 
 	 * @param relation
 	 *            the relation to be added
-	 * @return true, iff the relation was added
+	 * @return {@literal true}, if the relation was successfully added.
+	 *         Otherwise, {@literal false}.
 	 */
 	public boolean addSupplierRelation(ComponentSupplierRelation relation) {
 		return supplierRelations.add(relation);
@@ -115,7 +116,7 @@ public class Component implements Serializable {
 	 * @param supplier
 	 *            the supplier whose relation is being searched for
 	 * @return a ComponentSupplierRelation object of this component and the
-	 *         given supplier
+	 *         given supplier.
 	 */
 	public ComponentSupplierRelation getSupplier(Supplier supplier) {
 		for (ComponentSupplierRelation relation : supplierRelations) {
@@ -130,7 +131,7 @@ public class Component implements Serializable {
 	 * Returns an iterator over all the supplier relations of this component
 	 * 
 	 * @return an Iterator of all ComponentSupplierRelation objects related to
-	 *         this component
+	 *         this component.
 	 */
 	public Iterator<ComponentSupplierRelation> getAllSuppliers() {
 		return supplierRelations.iterator();
@@ -141,7 +142,18 @@ public class Component implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "Component name: " + name + "\nComponent ID: " + id
-				+ "\nQuantity on hand: " + stock;
+		/*
+		 * return "Component name: " + name + " | Component ID: " + id +
+		 * " | Quantity on hand: " + stock;
+		 */
+		String output = "Component name: " + name + " | Component ID: " + id
+				+ " | Quantity on hand: " + stock + "\nSuppliers:\n";
+		Iterator<ComponentSupplierRelation> componentSuppliers = getAllSuppliers();
+		while (componentSuppliers.hasNext()) {
+			Supplier supplier = componentSuppliers.next().getSupplier();
+			output += (supplier.getName() + ", " + supplier.getId() + "\n");
+		}
+		output += "\n";
+		return output;
 	}
 }

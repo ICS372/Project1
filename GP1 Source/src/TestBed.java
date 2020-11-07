@@ -5,7 +5,7 @@ import java.util.Random;
  * functionality via asserts.
  * 
  * @author Shuja Uddin
- * @version 6 November
+ * @version 6 November 2020
  *
  */
 public class TestBed {
@@ -21,8 +21,8 @@ public class TestBed {
 	/**
 	 * Constant value that represents the number of {@code Component}s that will
 	 * be tested. The implementer must set this value to at least
-	 * {@link TestBed#MINIMUM_TEST_COMPONENT_COUNT}. Otherwise, then the program
-	 * will crash.
+	 * {@value #MINIMUM_TEST_COMPONENT_COUNT}. Otherwise, then the program will
+	 * crash.
 	 */
 	private static final int TEST_COMPONENT_COUNT = 40;
 
@@ -36,8 +36,7 @@ public class TestBed {
 	/**
 	 * Constant value that represents the number of {@code Supplier}s that will
 	 * be tested. The implementer must set this value to at least
-	 * {@link TestBed#MINIMUM_TEST_SUPPLIER_COUNT}. Otherwise, the program will
-	 * crash.
+	 * {@value #MINIMUM_TEST_SUPPLIER_COUNT}. Otherwise, the program will crash.
 	 */
 	private static final int TEST_SUPPLIER_COUNT = 10;
 
@@ -201,10 +200,10 @@ public class TestBed {
 	}
 
 	/**
-	 * Used to generate randomized names for components and suppliers
+	 * Used to generate randomized names for components and suppliers.
 	 * 
 	 * @param numberOfNames
-	 * @return an array of randomized names
+	 * @return an array of randomized names.
 	 */
 	public String[] generateNames(int numberOfNames) {
 		String lowerCaseLetters = "abcdefghijklmnopqrstuvwxyz";

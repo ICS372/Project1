@@ -2,8 +2,9 @@ import java.io.Serializable;
 import java.util.Objects;
 
 /**
- * This class represents a single relationship between a component and a
- * supplier
+ * This class represents a single relationship between a {@code Component} and a
+ * {@code Supplier}. A component can be supplied by multiple suppliers. And a
+ * supplier can supply multiple components.
  * 
  * @author Shuja Uddin
  * @version 6 November 2020
